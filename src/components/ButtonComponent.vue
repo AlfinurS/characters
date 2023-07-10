@@ -1,0 +1,76 @@
+<template>
+  <button
+    @click="onClick"
+    :type="type"
+    :disabled="disabled"
+    class="button-component"
+  >
+    <div><component :is="icon" /></div>
+    {{ text }}
+    <div><component :is="iconRight" /></div>
+  </button>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import iconArrow from "@/components/icons/iconArrow.vue";
+
+export default defineComponent({
+  name: "ButtonComponent",
+  emits: ["onClick"],
+  components: {
+    iconArrow,
+  },
+  props: {
+    icon: {
+      type: String,
+      default: "",
+    },
+    iconRight: {
+      type: String,
+      default: "",
+    },
+    type: {
+      type: String,
+      default: "button",
+    },
+    text: {
+      type: String,
+      default: "",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  methods: {
+    onClick(): void {
+      this.$emit("onClick");
+    },
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+.button-component {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 78px;
+  min-height: 56px;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #3c4061;
+}
+.button-component:hover {
+  opacity: 0.7;
+}
+</style>

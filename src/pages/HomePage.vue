@@ -1,27 +1,28 @@
 <template>
-  <section class="">
-    <h2 class="">Персонажи</h2>
-
-    <input
-      v-model="search"
-      type="text"
-      class="catalog__search-input input"
-      placeholder="Поиск товара"
-      @input="loadCharacters"
+  <section class="container">
+    <h2 class="headline">Персонажи</h2>
+    <InputComponent
+      @onInput="setSearch"
+      icon="iconSearch"
+      placeholder="Поиск"
     />
-
-    <p>{{ data.info.count }} персонажей</p>
+    <p class="content">{{ data.info.count }} персонажей</p>
     <div v-for="character in data.results" :key="character.id" class="list">
-      <img
-        class=""
-        :src="getImage(character.image)"
-        alt="image"
-        width="50"
-        height="50"
-      />
-      <p>{{ character.name }}</p>
+      <div class="list__wrapp">
+        <img
+          class="list__avatar"
+          :src="getImage(character.image)"
+          alt="image"
+        />
+        <p class="list__name">{{ character.name }}</p>
+      </div>
       <iconMessage class="list__btn" />
     </div>
+    <ButtonComponent
+      @onClick="setSearch"
+      iconRight="iconArrow"
+      text="Показать еще"
+    ></ButtonComponent>
   </section>
 </template>
 
@@ -30,6 +31,8 @@ import { defineComponent } from "vue";
 import { characterType, responseListType } from "@/types/common";
 import axios from "axios";
 import iconMessage from "@/components/icons/iconMessage.vue";
+import InputComponent from "@/components/InputComponent.vue";
+import ButtonComponent from "@/components/ButtonComponent.vue";
 
 const initData = (): responseListType => ({
   info: {
@@ -45,12 +48,15 @@ export default defineComponent({
   name: "HomePage",
   components: {
     iconMessage,
+    InputComponent,
+    ButtonComponent,
   },
   data() {
     return {
       data: initData() as responseListType,
       search: "",
       characters: [] as characterType[],
+      apiUrl: "https://rickandmortyapi.com/api/character",
     };
   },
 
@@ -58,7 +64,21 @@ export default defineComponent({
 
   methods: {
     loadCharacters(): void {
-      const url = "https://rickandmortyapi.com/api/character";
+      const url = this.apiUrl;
+      const params = {};
+      axios
+        .get(url, { params })
+        .then(({ data }: { data: responseListType }) => {
+          this.data = data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    setSearch(data: string): void {
+      this.search = data;
+      const url = this.apiUrl;
       const params = {
         name: this.search,
       };
@@ -72,12 +92,8 @@ export default defineComponent({
         });
     },
 
-    getImage(image) {
+    getImage(image): string {
       return `${image}`;
-    },
-
-    searchCharacter() {
-      return this.characters;
     },
   },
 
@@ -86,3 +102,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.container {
+  min-width: 325px;
+}
+</style>
