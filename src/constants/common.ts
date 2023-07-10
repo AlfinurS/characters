@@ -1,10 +1,16 @@
-import { productType } from "@/types/common";
+import { characterType } from "@/types/common";
 
-export const productConst: productType = Object.freeze({
+export const characterConst: characterType = Object.freeze({
   id: 0,
+  name: "",
+  status: "",
+  species: "",
+  type: "",
+  gender: "",
+  origin: {
+    name: "",
+    url: "",
+  },
   image: "",
-  title: "",
-  content: "",
-  price: 0,
-  collection: [],
+  episode: [],
 });
