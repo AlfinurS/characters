@@ -2,64 +2,29 @@
   font-family: 'Lato', sans-serif;
 }
 body {
-  margin: 0 auto;
-  width: 375px;
-  height: 812px;
   background-color: $grey-bg-color;
 }
-
-.list {
-  display: flex;
-  padding: 15px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 15px;
-  border: 1px solid $grey-bg-color;
-  background: $white-color;
-  margin-top: 10px;
-  margin-bottom: 10px;
-    &__wrapp {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    &__btn {
-    cursor: pointer;
-    }
-    &__avatar {
-      border-radius: 100px;
-      margin-right: 20px;
-      width:50px;
-      height:50px;
-    }
-    &__name {
-      color: $black-color;
-      font-size: 17px;
-      font-weight: 700;
-      line-height: normal;
-    }
+.layout {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 25px;
+  padding-right: 25px;
+  box-sizing: border-box;
 }
-
+.compensator {
+  height: 80px;
+}
 .list__btn:hover {
   opacity: 0.7;
 }
-.headline {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  color: $dark-blue-color;
-  text-align: center;
-  margin-bottom: 16px;
-  margin-top: 16px;
-}
-.content {
-  color: $grey-color;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: center;
+.primary-btn {
+  background-color: $white-color;
+  color: $graphite-color;
   margin-bottom: 10px;
-  margin-top: 10px;
+}
+.violet-btn {
+  color:$white-color;
+  background-color: $violet-color;
 }

@@ -3,6 +3,7 @@
     @click="onClick"
     :type="type"
     :disabled="disabled"
+    :class="classProps"
     class="button-component"
   >
     <div><component :is="icon" /></div>
@@ -22,6 +23,10 @@ export default defineComponent({
     iconArrow,
   },
   props: {
+    classProps: {
+      type: String,
+      default: "primary-btn",
+    },
     icon: {
       type: String,
       default: "",
@@ -61,14 +66,12 @@ export default defineComponent({
   min-height: 56px;
   box-sizing: border-box;
   align-items: center;
-  background-color: #fff;
   border-radius: 10px;
   border: none;
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  color: #3c4061;
 }
 .button-component:hover {
   opacity: 0.7;
