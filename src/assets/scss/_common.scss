@@ -22,9 +22,12 @@ body {
 .primary-btn {
   background-color: $white-color;
   color: $graphite-color;
-  margin-bottom: 10px;
 }
 .violet-btn {
   color:$white-color;
   background-color: $violet-color;
+}
+::placeholder {
+  color: $grey-color;
+  font-size: 17px;
 }

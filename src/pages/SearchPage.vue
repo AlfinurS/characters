@@ -180,6 +180,7 @@ export default defineComponent({
   &__list {
     display: grid;
     grid-template-columns: 1fr;
+    margin-bottom: 10px;
     @media (min-width: 748px) {
       grid-template-columns: 1fr 1fr;
       gap: 18px;
@@ -200,8 +201,6 @@ export default defineComponent({
     border-radius: 15px;
     border: 1px solid #f4f5f5;
     background: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
     &-wrapp {
       display: flex;
       flex-direction: row;

@@ -29,11 +29,11 @@ export default defineComponent({
     },
     icon: {
       type: String,
-      default: "",
+      default: undefined,
     },
     iconRight: {
       type: String,
-      default: "",
+      default: undefined,
     },
     type: {
       type: String,
