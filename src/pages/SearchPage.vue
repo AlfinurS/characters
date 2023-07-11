@@ -7,12 +7,19 @@
       icon="iconSearch"
       placeholder="Поиск"
     />
-    <p class="page__text" v-if="data.info.next">
-      {{ data.info.count }} персонажей
-    </p>
-    <p class="page__text" v-if="!data.info.next">
-      Не удалось найти персонажей с таким именем
-    </p>
+    <div class="page__text-wrapp">
+      <p class="page__text" v-if="data.results.length > 0">
+        {{ data.info.count }} персонажей
+      </p>
+    </div>
+    <div class="page__text-wrapp">
+      <span
+        class="page__text page__text-notFound"
+        v-if="data.results.length === 0"
+      >
+        Не удалось найти персонажей с таким именем
+      </span>
+    </div>
     <div class="page__list-wrapper">
       <div class="page__list">
         <div
@@ -32,18 +39,21 @@
         </div>
       </div>
       <ButtonComponent
+        class="page__button"
         v-if="data.info.next"
         @onClick="loadCharacters"
         iconRight="iconArrow"
         text="Показать еще"
       ></ButtonComponent>
-
-      <ButtonComponent
-        v-if="search"
-        @onClick="clearSearch"
-        classProps="violet-btn"
-        text="Сбросить поиск"
-      ></ButtonComponent>
+      <div class="page__block-bottom-compensator" v-if="search"></div>
+      <div class="page__block-bottom" v-if="search">
+        <ButtonComponent
+          class="page__button-bottom"
+          @onClick="clearSearch"
+          classProps="violet-btn"
+          text="Сбросить поиск"
+        ></ButtonComponent>
+      </div>
     </div>
   </section>
 </template>
@@ -158,6 +168,14 @@ export default defineComponent({
     text-align: center;
     margin-bottom: 10px;
     margin-top: 10px;
+    max-width: 205px;
+    &-notFound {
+      margin-top: 56px;
+    }
+    &-wrapp {
+      display: flex;
+      justify-content: center;
+    }
   }
   &__list {
     display: grid;
@@ -193,7 +211,7 @@ export default defineComponent({
       cursor: pointer;
     }
     &-avatar {
-      border-radius: 100px;
+      border-radius: 50%;
       margin-right: 20px;
       width: 50px;
       height: 50px;
@@ -203,7 +221,33 @@ export default defineComponent({
       font-size: 17px;
       font-weight: 700;
       line-height: normal;
+      margin-right: 8px;
     }
+  }
+  &__block-bottom {
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 10px 10px 0px 0px;
+    background: #fff;
+    box-shadow: 0px 0px 13px 0px rgba(22, 22, 23, 0.26);
+    padding-left: 25px;
+    padding-right: 25px;
+    &-compensator {
+      height: 80px;
+    }
+  }
+  &__button {
+    margin-bottom: 10px;
+  }
+  &__button-bottom {
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-bottom: 93px;
   }
 }
 </style>

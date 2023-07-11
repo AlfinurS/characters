@@ -47,6 +47,8 @@ export default defineComponent({
 .footer {
   position: fixed;
   bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
   flex-direction: row;
   margin-top: 14px;
@@ -71,6 +73,7 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     align-content: center;
+    cursor: pointer;
     &-wrapper {
       position: relative;
     }
@@ -91,6 +94,10 @@ export default defineComponent({
         border: 2px solid white;
       }
     }
+  }
+
+  &__item :hover {
+    opacity: 0.7;
   }
 }
 </style>
